@@ -17,6 +17,8 @@ import {
 } from "@mui/icons-material"; // Importación de íconos
 
 import { themeOptions } from "./ThemeOptions"; // // Importación de las configuraciones de tema
+import Product from "./components/Product";
+import Navbar from "./components/navbar/Navbar";
 
 export default function App() {
   const [mode, setMode] = useState("dark");
@@ -30,7 +32,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container sx={{ border: 4, boxShadow: 3, pb: 2 }}>
+      <Container
+        sx={{ border: 4, boxShadow: 3, pb: 2, borderColor: "primary.main" }}
+      >
         <IconButton
           onClick={toggleColorMode}
           color="inherit"
@@ -38,9 +42,12 @@ export default function App() {
         >
           {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
-        <Typography variant="h4">Yoga</Typography>
+        {/* <Typography variant="h4">Yoga</Typography>
         <Typography>Esto es un texto parrafo</Typography>
-        <Button variant="contained">Esto es un boton</Button>
+        <Button variant="contained">Esto es un boton</Button> */}
+        <Product />
+        <Product />
+        <Navbar />
       </Container>
     </ThemeProvider>
   );
