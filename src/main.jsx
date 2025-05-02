@@ -8,11 +8,14 @@ import "@fontsource/roboto/700.css";
 
 import "./index.css";
 import App from "./App.jsx";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { themeOptions } from "./ThemeOptions.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <CssBaseline />
-    <App />
+    <ThemeProvider theme={themeOptions}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
   </StrictMode>
 );
