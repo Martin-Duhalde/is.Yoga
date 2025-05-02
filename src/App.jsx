@@ -45,9 +45,9 @@ export default function App() {
         {/* <Typography variant="h4">Yoga</Typography>
         <Typography>Esto es un texto parrafo</Typography>
         <Button variant="contained">Esto es un boton</Button> */}
-        <Product />
-        <Product />
         <Navbar />
+        <Product />
+        <Product />
       </Container>
     </ThemeProvider>
   );
