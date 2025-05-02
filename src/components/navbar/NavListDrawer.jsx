@@ -31,13 +31,15 @@ export default function NavListDrawer() {
         </List>
       </nav>
       <Divider />
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#">
-            <ListItemText primary="Trash" />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <nav>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton component="a" href="#">
+              <ListItemText primary="Trash" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </nav>
     </Box>
   );
 }

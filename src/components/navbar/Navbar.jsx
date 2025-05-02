@@ -24,7 +24,11 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">Mi yoga app</Typography>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Yoga con Tere
+          </Typography>
+          <Button color="inherit"> Home </Button>
+          <Button color="inherit"> Login </Button>
         </Toolbar>
         {/* <Button onClick={() => setOpen(true)}>Abrir menú</Button> */}
       </AppBar>
