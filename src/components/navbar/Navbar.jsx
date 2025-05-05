@@ -26,24 +26,29 @@ import GroupIcon from "@mui/icons-material/Group";
 import PersonIcon from "@mui/icons-material/Person";
 import IconTema from "../IconTema";
 
-const navLinks = [
-  { title: "Home", path: "/home" },
-  { title: "Clases", path: "/clases" },
-  { title: "Cursos", path: "/cursos" },
-  { title: "Seminarios", path: "/seminarios" },
-  { title: "Login", path: "/login" },
-];
+// const navLinks = [
+//   { title: "Home", path: "/home" },
+//   { title: "Clases", path: "/clases" },
+//   { title: "Cursos", path: "/cursos" },
+//   { title: "Seminarios", path: "/seminarios" },
+//   { title: "Login", path: "/login" },
+// ];
 
-const navLinksDrawer = [
-  { title: "Inbox", path: "/home", icon: <CrueltyFreeIcon /> },
-  { title: "Clases", path: "/clases", icon: <SelfImprovementIcon /> },
-  { title: "Cursos", path: "/cursos", icon: <SchoolIcon /> },
-  { title: "Seminarios", path: "/seminarios", icon: <SchoolIcon /> },
-  { title: "Alumnos", path: "/alumnos", icon: <PersonIcon /> },
-  { title: "Videos", path: "/login", icon: <SlideshowIcon /> },
-];
+// const navLinksDrawer = [
+//   { title: "Inbox", path: "/home", icon: <CrueltyFreeIcon /> },
+//   { title: "Clases", path: "/clases", icon: <SelfImprovementIcon /> },
+//   { title: "Cursos", path: "/cursos", icon: <SchoolIcon /> },
+//   { title: "Seminarios", path: "/seminarios", icon: <SchoolIcon /> },
+//   { title: "Alumnos", path: "/alumnos", icon: <PersonIcon /> },
+//   { title: "Videos", path: "/login", icon: <SlideshowIcon /> },
+// ];
 
-export default function Navbar({ toggleColorMode, mode }) {
+export default function Navbar({
+  navLinks,
+  navLinksDrawer,
+  toggleColorMode,
+  mode,
+}) {
   const [open, setOpen] = useState(false);
 
   return (

@@ -4,7 +4,7 @@ import { useState, useMemo } from "react"; // Importación de React y hooks
 
 import { Container, CssBaseline, ThemeProvider } from "@mui/material"; // Importación de Material UI y componentes relacionados con la UI
 
-import { themeOptions } from "./ThemeOptions"; // // Importación de las configuraciones de tema
+import { themeOptions } from "./ThemeOptions"; /// Importación de las configuraciones de tema
 import Product from "./components/Product";
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
@@ -14,19 +14,43 @@ import Clases from "./pages/clases";
 import Cursos from "./pages/cursos";
 import Seminarios from "./pages/seminarios";
 
+import InboxIcon from "@mui/icons-material/Inbox";
+import DraftsIcon from "@mui/icons-material/Drafts";
+import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
+import SchoolIcon from "@mui/icons-material/School";
+import SlideshowIcon from "@mui/icons-material/Slideshow";
+import BubbleChartIcon from "@mui/icons-material/BubbleChart";
+import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
+import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
+import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import GroupIcon from "@mui/icons-material/Group";
+import PersonIcon from "@mui/icons-material/Person";
+
+const navLinks = [
+  { title: "Home", path: "/home" },
+  { title: "Clases", path: "/clases" },
+  { title: "Cursos", path: "/cursos" },
+  { title: "Seminarios", path: "/seminarios" },
+  { title: "Login", path: "/login" },
+];
+
+const navLinksDrawer = [
+  { title: "Inbox", path: "/home", icon: <CrueltyFreeIcon /> },
+  { title: "Clases", path: "/clases", icon: <SelfImprovementIcon /> },
+  { title: "Cursos", path: "/cursos", icon: <SchoolIcon /> },
+  { title: "Seminarios", path: "/seminarios", icon: <SchoolIcon /> },
+  { title: "Alumnos", path: "/alumnos", icon: <PersonIcon /> },
+  { title: "Videos", path: "/login", icon: <SlideshowIcon /> },
+];
+
 export default function App() {
   const storedMode = localStorage.getItem("colorMode") || "dark";
   const [mode, setMode] = useState(storedMode);
 
-  //const [mode, setMode] = useState("dark");
-
-  // const toggleColorMode = () => {
-  //   setMode((prev) => (prev === "light" ? "dark" : "light"));
-  // };
   const toggleColorMode = () => {
     setMode((prev) => {
       const newMode = prev === "light" ? "dark" : "light";
-      localStorage.setItem("colorMode", newMode); // Guardar preferencia
+      localStorage.setItem("colorMode", newMode); /// Guardar preferencia en localStorage
       return newMode;
     });
   };
@@ -36,7 +60,12 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Navbar toggleColorMode={toggleColorMode} mode={mode} />
+      <Navbar
+        navLinks={navLinks}
+        navLinksDrawer={navLinksDrawer}
+        toggleColorMode={toggleColorMode}
+        mode={mode}
+      />
       <Container
         sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
       >
