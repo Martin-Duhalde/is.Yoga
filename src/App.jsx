@@ -19,6 +19,7 @@ import {
 import { themeOptions } from "./ThemeOptions"; // // Importación de las configuraciones de tema
 import Product from "./components/Product";
 import Navbar from "./components/navbar/Navbar";
+import IconTema from "./components/IconTema";
 
 export default function App() {
   const [mode, setMode] = useState("dark");
@@ -32,21 +33,11 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
+      <Navbar toggleColorMode={toggleColorMode} mode={mode} />
       <Container
         sx={{ border: 4, boxShadow: 3, pb: 2, borderColor: "primary.main" }}
       >
-        <IconButton
-          onClick={toggleColorMode}
-          color="inherit"
-          sx={{ float: "right" }}
-        >
-          {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
-        {/* <Typography variant="h4">Yoga</Typography>
-        <Typography>Esto es un texto parrafo</Typography>
-        <Button variant="contained">Esto es un boton</Button> */}
-        <Navbar />
-        <Product />
         <Product />
       </Container>
     </ThemeProvider>

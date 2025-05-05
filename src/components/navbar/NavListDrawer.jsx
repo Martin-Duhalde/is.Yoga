@@ -8,26 +8,26 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-
-export default function NavListDrawer() {
+export default function NavListDrawer({ navLinks }) {
   return (
     <Box sx={{ wid: 250 }}>
       <nav>
         <List>
-          <ListItem>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
+          {navLinks.map((link) => (
+            <ListItem key={link.title} disablePadding>
+              <ListItemButton component="a" href={link.path}>
+                <ListItemIcon>{link.icon}</ListItemIcon>
+                <ListItemText> {link.title}</ListItemText>
+              </ListItemButton>
+            </ListItem>
+          ))}
+          {/*
           <ListItem>
             <ListItemIcon>
               <DraftsIcon />
             </ListItemIcon>
             <ListItemText primary="Drafts" />
-          </ListItem>
+          </ListItem> */}
         </List>
       </nav>
       <Divider />
@@ -35,7 +35,7 @@ export default function NavListDrawer() {
         <List>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#">
-              <ListItemText primary="Trash" />
+              <ListItemText primary="Cerrar sesión" />
             </ListItemButton>
           </ListItem>
         </List>
