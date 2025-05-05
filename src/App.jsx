@@ -15,12 +15,21 @@ import Cursos from "./pages/cursos";
 import Seminarios from "./pages/seminarios";
 
 export default function App() {
-  const [mode, setMode] = useState("dark");
+  const storedMode = localStorage.getItem("colorMode") || "dark";
+  const [mode, setMode] = useState(storedMode);
 
+  //const [mode, setMode] = useState("dark");
+
+  // const toggleColorMode = () => {
+  //   setMode((prev) => (prev === "light" ? "dark" : "light"));
+  // };
   const toggleColorMode = () => {
-    setMode((prev) => (prev === "light" ? "dark" : "light"));
+    setMode((prev) => {
+      const newMode = prev === "light" ? "dark" : "light";
+      localStorage.setItem("colorMode", newMode); // Guardar preferencia
+      return newMode;
+    });
   };
-
   const theme = useMemo(() => themeOptions(mode), [mode]);
 
   return (
@@ -29,7 +38,7 @@ export default function App() {
 
       <Navbar toggleColorMode={toggleColorMode} mode={mode} />
       <Container
-        sx={{ border: 4, boxShadow: 3, pb: 2, borderColor: "primary.main" }}
+        sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
       >
         <Routes>
           <Route path="/" element={<Home />} />
