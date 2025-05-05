@@ -8,6 +8,7 @@ import { themeOptions } from "./ThemeOptions"; /// Importación de las configura
 import Product from "./components/Product";
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
+
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Clases from "./pages/clases";
@@ -25,9 +26,11 @@ import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import GroupIcon from "@mui/icons-material/Group";
 import PersonIcon from "@mui/icons-material/Person";
+import Posturas from "./pages/posturas";
 
 const navLinks = [
   { title: "Home", path: "/home" },
+  { title: "Posturas", path: "/posturas" },
   { title: "Clases", path: "/clases" },
   { title: "Cursos", path: "/cursos" },
   { title: "Seminarios", path: "/seminarios" },
@@ -76,6 +79,7 @@ export default function App() {
           <Route path="/clases" element={<Clases />} />
           <Route path="/seminarios" element={<Seminarios />} />
           <Route path="/cursos" element={<Cursos />} />
+          <Route path="/posturas" element={<Posturas />} />
         </Routes>
       </Container>
     </ThemeProvider>

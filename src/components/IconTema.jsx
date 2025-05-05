@@ -19,6 +19,7 @@ export default function IconTema({ toggleColorMode, mode }) {
     <IconButton
       onClick={toggleColorMode}
       color="inherit"
+      size="large"
       sx={{ float: "right" }}
     >
       {mode === "dark" ? <Brightness2Icon /> : <LightModeIcon />}

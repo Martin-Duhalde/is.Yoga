@@ -13,7 +13,7 @@ export default function Cursos() {
       >
         <Box
           component="img"
-          src="/tere-gris-der.png"
+          src="/tere-verde-der.png"
           alt="Tere"
           sx={{
             width: 200,

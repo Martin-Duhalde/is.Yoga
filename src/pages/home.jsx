@@ -30,7 +30,7 @@ export default function Home() {
 
         <Box
           component="img"
-          src="/tere-gris-der.png"
+          src="/tere-violeta-der.png"
           alt="Tere"
           sx={{
             width: 200,
@@ -53,12 +53,13 @@ export default function Home() {
         <Typography variant="body1" sx={{ maxWidth: 600, mx: "auto" }}>
           Soy Tere, profesora de yoga. Te invito a explorar clases, videos,
           capacitaciones y seminarios diseñados para equilibrar tu cuerpo, mente
-          y espíritu. ¡Sumate a esta experiencia de bienestar!
+          y espíritu. <br />
+          ¡Sumate a esta experiencia de bienestar!
         </Typography>
 
         <Product
-          name="Clase de Yoga"
-          description="Clase para relajar cuerpo y mente"
+          name="Clase de Yoga "
+          description="Clase para relajar cuerpo y mente."
           price={19.99}
           image="/tere-gris-der.png"
           rotate={false}
@@ -71,6 +72,23 @@ export default function Home() {
           image="/tere-roja-der.png"
           rotate={false}
         />
+
+        <Product
+          name="Yoga Presencial"
+          description="Martes y Jueves 09:00hs. Reserva tu cupo. Apto principiantes e intermedios."
+          price={19.99}
+          image="/tere-gris-der.png"
+          rotate={false}
+        />
+
+        <Product
+          name="Seminario de Caderas"
+          description="Sábado 20 Septiembre 09:00hs. Reserva tu cupo. Apto principiantes e intermedios."
+          price={19.99}
+          image="/tere-celeste-der.png"
+          rotate={false}
+        />
+
         <Product />
         <Product />
       </Paper>

@@ -92,18 +92,42 @@ const classes = [
 export default function Clases() {
   return (
     <Container sx={{ py: 6 }}>
-      <Typography variant="h3" align="center" gutterBottom>
-        Clases de Hata Yoga
-      </Typography>
-      <Typography
-        variant="body1"
-        align="center"
-        sx={{ mb: 4, maxWidth: 700, mx: "auto" }}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" }, // vertical en mobile, horizontal en desktop
+          alignItems: "center",
+          gap: 4,
+        }}
       >
-        Descubrí nuestras sesiones de yoga: flujos dinámicos, restaurativos y
-        meditaciones guiadas para todos los niveles.
-      </Typography>
-
+        <Box
+          component="img"
+          src="/tere-celeste-der.png"
+          alt="Tere"
+          sx={{
+            width: 200,
+            height: 200,
+            borderRadius: "50%",
+            objectFit: "cover",
+            boxShadow: 4,
+            transition: "transform 0.5s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.05) rotate(-2deg)",
+            },
+          }}
+        />
+        <Box>
+          <Typography variant="h3" gutterBottom>
+            Clases de Hatha Yoga
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 4, maxWidth: 700, mx: "auto" }}>
+            Descubrí nuestras sesiones de yoga: flujos dinámicos, restaurativos
+            y meditaciones guiadas para todos los niveles.
+          </Typography>
+        </Box>
+      </Box>
+      <br />
+      <br />
       <Grid container spacing={4} justifyContent="center">
         {classes.map(({ id, title, description, image }) => (
           <Grid item xs={12} sm={6} md={4} key={id}>
