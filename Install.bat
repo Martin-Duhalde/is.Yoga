@@ -22,3 +22,6 @@ npm install @mui/lab
 
 npm install react-router-dom
 
+npm install @dnd-kit/core
+
+npm install  @dnd-kit/sortable
