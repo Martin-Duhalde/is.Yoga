@@ -1,6 +1,7 @@
 // src/pages/Home.jsx
 import { Box, Typography, Container, Paper, styled } from "@mui/material";
 import Product from "../components/Product";
+import BoxTereCircular from "../components/BoxTereCircular";
 //import mantraImg from "../assets/mantra.png";
 
 const RotatingImg = styled("img")({
@@ -28,24 +29,7 @@ export default function Home() {
       >
         {/* <RotatingImg src={mantraImg} alt="imagen del producto" /> */}
 
-        <Box
-          component="img"
-          src="/tere-violeta-der.png"
-          alt="Tere"
-          sx={{
-            width: 200,
-            height: 200,
-            borderRadius: "50%",
-            objectFit: "cover",
-            boxShadow: 4,
-            mb: 3,
-            transition: "transform 0.5s ease-in-out",
-            "&:hover": {
-              transform: "scale(1.05) rotate(-2deg)",
-            },
-          }}
-        />
-        {/* <RotatingImg src={mantraImg} alt="imagen del producto" /> */}
+        <BoxTereCircular />
 
         <Typography variant="h4" gutterBottom>
           Bienvenida a Yoga con Tere

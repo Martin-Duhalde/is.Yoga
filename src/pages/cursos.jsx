@@ -1,4 +1,5 @@
 import { Box, Typography, Container } from "@mui/material";
+import BoxTereCircular from "../components/BoxTereCircular";
 
 export default function Cursos() {
   return (
@@ -11,22 +12,7 @@ export default function Cursos() {
           gap: 4,
         }}
       >
-        <Box
-          component="img"
-          src="/tere-verde-der.png"
-          alt="Tere"
-          sx={{
-            width: 200,
-            height: 200,
-            borderRadius: "50%",
-            objectFit: "cover",
-            boxShadow: 4,
-            transition: "transform 0.5s ease-in-out",
-            "&:hover": {
-              transform: "scale(1.05) rotate(-2deg)",
-            },
-          }}
-        />
+        <BoxTereCircular variacion="verde" />
         <Box>
           <Typography variant="h3" gutterBottom>
             Cursos

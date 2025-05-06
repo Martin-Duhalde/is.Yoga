@@ -6,6 +6,7 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+import BoxTereCircular from "../components/BoxTereCircular";
 
 const posturas = [
   {
@@ -48,7 +49,7 @@ const posturas = [
     nombre: "Bhujangasana",
     archivo: "bhujangasana-postura-cobra-yoga.jpg",
     descripcion:
-      "La postura de la cobra fortalece la columna vertebral y abre el pecho y los pulmones. Es beneficiosa para aliviar el dolor de espalda y mejorar la postura. Además, estimula los órganos abdominales y puede ayudar a aliviar el estrés y la fatiga. :contentReference[oaicite:1]{index=1}",
+      "La postura de la cobra fortalece la columna vertebral y abre el pecho y los pulmones. Es beneficiosa para aliviar el dolor de espalda y mejorar la postura. Además, estimula los órganos abdominales y puede ayudar a aliviar el estrés y la fatiga.",
   },
   {
     nombre: "Bitilasana",
@@ -60,25 +61,25 @@ const posturas = [
     nombre: "Chaturanga Dandasana",
     archivo: "chaturanga-dandasana.jpg",
     descripcion:
-      "Esta postura, similar a una flexión de brazos, fortalece los brazos, los hombros, el abdomen y las piernas. Es fundamental en las secuencias de vinyasa y requiere una alineación precisa para evitar lesiones. Mejora la resistencia y prepara el cuerpo para posturas más avanzadas. :contentReference[oaicite:2]{index=2}",
+      "Esta postura, similar a una flexión de brazos, fortalece los brazos, los hombros, el abdomen y las piernas. Es fundamental en las secuencias de vinyasa y requiere una alineación precisa para evitar lesiones. Mejora la resistencia y prepara el cuerpo para posturas más avanzadas.",
   },
   {
     nombre: "Dhanurasana",
     archivo: "dhanurasana.jpg",
     descripcion:
-      "La postura del arco estira todo el cuerpo, especialmente el pecho, el abdomen, los muslos y los tobillos. Fortalece la espalda y mejora la postura. Además, estimula los órganos abdominales y puede ayudar a aliviar el estrés y la fatiga. :contentReference[oaicite:3]{index=3}",
+      "La postura del arco estira todo el cuerpo, especialmente el pecho, el abdomen, los muslos y los tobillos. Fortalece la espalda y mejora la postura. Además, estimula los órganos abdominales y puede ayudar a aliviar el estrés y la fatiga.",
   },
   {
     nombre: "Garudasana",
     archivo: "garudasana.jpg",
     descripcion:
-      "Conocida como la postura del águila, esta asana mejora el equilibrio y la concentración. Estira los hombros, las caderas y los muslos, y fortalece los músculos de las piernas y los tobillos. También ayuda a mejorar la coordinación y la conciencia corporal. :contentReference[oaicite:4]{index=4}",
+      "Conocida como la postura del águila, esta asana mejora el equilibrio y la concentración. Estira los hombros, las caderas y los muslos, y fortalece los músculos de las piernas y los tobillos. También ayuda a mejorar la coordinación y la conciencia corporal.",
   },
   {
     nombre: "Halasana",
     archivo: "halasana-1.jpg",
     descripcion:
-      "La postura del arado estira la columna vertebral y los hombros, y calma el sistema nervioso. Es beneficiosa para aliviar el estrés y mejorar la flexibilidad de la espalda. Además, estimula los órganos abdominales y puede ayudar a mejorar la digestión. :contentReference[oaicite:5]{index=5}",
+      "La postura del arado estira la columna vertebral y los hombros, y calma el sistema nervioso. Es beneficiosa para aliviar el estrés y mejorar la flexibilidad de la espalda. Además, estimula los órganos abdominales y puede ayudar a mejorar la digestión.",
   },
   {
     nombre: "Janu Sirsasana",
@@ -261,22 +262,7 @@ export default function Posturas() {
           gap: 4,
         }}
       >
-        <Box
-          component="img"
-          src="/tere-griscolor-der.png"
-          alt="Tere"
-          sx={{
-            width: 200,
-            height: 200,
-            borderRadius: "50%",
-            objectFit: "cover",
-            boxShadow: 4,
-            transition: "transform 0.5s ease-in-out",
-            "&:hover": {
-              transform: "scale(1.05) rotate(-2deg)",
-            },
-          }}
-        />
+        <BoxTereCircular variacion="griscolor" />
         <Box>
           <Typography variant="h3" gutterBottom>
             Posturas
