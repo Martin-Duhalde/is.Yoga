@@ -40,7 +40,7 @@ export default function Navbar({
               <Button
                 component={NavLink}
                 to={link.title}
-                href={link.path}
+                key={link.title}
                 color="inherit"
               >
                 {link.title}
@@ -66,7 +66,11 @@ export default function Navbar({
       </AppBar>
 
       <Drawer open={open} anchor="right" onClose={() => setOpen(false)}>
-        <NavListDrawer navLinks={navLinksDrawer} />
+        <NavListDrawer
+          navLinks={navLinksDrawer}
+          NavLink={NavLink}
+          setOpen={setOpen}
+        />
       </Drawer>
     </>
   );

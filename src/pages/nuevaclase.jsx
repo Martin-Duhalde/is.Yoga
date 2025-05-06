@@ -1,5 +1,6 @@
 // pages/NuevaClase.jsx
 import { useState } from "react";
+import { useEffect } from "react";
 import { Box, TextField, Typography, Grid } from "@mui/material";
 import { listaPosturas } from "../data/listaPosturas"; // <- Nombre correcto
 import ListarPosturas from "../components/clases/ListarPosturas";
@@ -7,7 +8,15 @@ import ClaseEditable from "./ClaseEditable";
 
 export default function NuevaClase() {
   const [busqueda, setBusqueda] = useState("");
-  const [clase, setClase] = useState([]);
+  //  const [clase, setClase] = useState([]);
+  const [clase, setClase] = useState(() => {
+    const guardada = localStorage.getItem("clase");
+    return guardada ? JSON.parse(guardada) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("clase", JSON.stringify(clase));
+  }, [clase]);
 
   // Filtrar y transformar para que tengan las propiedades que esperan los componentes
   const posturasFiltradas = listaPosturas

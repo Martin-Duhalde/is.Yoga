@@ -37,10 +37,16 @@ function SortablePostura({ postura, id, onRemove }) {
         component="img"
         image={postura.image}
         alt={postura.title}
-        sx={{ width: 60, height: 60, borderRadius: "50%", mr: 2 }}
+        sx={{
+          width: 60,
+          height: 60,
+          borderRadius: "50%",
+          cursor: "grab",
+          mr: 2,
+        }}
         {...listeners}
       />
-      {/* <Typography sx={{ flexGrow: 1 }}>{postura.title}</Typography> */}{" "}
+
       <Typography sx={{ flexGrow: 1, cursor: "grab" }} {...listeners}>
         {postura.title}
       </Typography>
