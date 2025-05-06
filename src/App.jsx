@@ -9,6 +9,8 @@ import Product from "./components/Product";
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
+
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Clases from "./pages/clases";
@@ -63,28 +65,30 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
+      <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
+        <CssBaseline />
 
-      <Navbar
-        navLinks={navLinks}
-        navLinksDrawer={navLinksDrawer}
-        toggleColorMode={toggleColorMode}
-        mode={mode}
-      />
-      <Container
-        sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
-      >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/clases" element={<Clases />} />
-          <Route path="/nuevaclase" element={<NuevaClase />} />
-          <Route path="/seminarios" element={<Seminarios />} />
-          <Route path="/cursos" element={<Cursos />} />
-          <Route path="/posturas" element={<Posturas />} />
-        </Routes>
-      </Container>
+        <Navbar
+          navLinks={navLinks}
+          navLinksDrawer={navLinksDrawer}
+          toggleColorMode={toggleColorMode}
+          mode={mode}
+        />
+        <Container
+          sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/clases" element={<Clases />} />
+            <Route path="/nuevaclase" element={<NuevaClase />} />
+            <Route path="/seminarios" element={<Seminarios />} />
+            <Route path="/cursos" element={<Cursos />} />
+            <Route path="/posturas" element={<Posturas />} />
+          </Routes>
+        </Container>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }
