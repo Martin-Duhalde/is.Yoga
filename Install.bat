@@ -29,3 +29,5 @@ npm install  @dnd-kit/sortable
 npm install notistack
 
 npm install js-cookie
+
+install react-jwt

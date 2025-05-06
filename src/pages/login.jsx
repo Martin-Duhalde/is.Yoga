@@ -1,6 +1,7 @@
+import Cookies from "js-cookie";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
-import Cookies from "js-cookie"; // al inicio del archivo
+import { decodeToken, isExpired } from "react-jwt";
 
 import {
   Box,
@@ -17,6 +18,9 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState({ error: false, message: "" });
   const [loading, setLoading] = useState(false);
+
+  const [userRole, setUserRole] = useState("");
+  const [userName, setUserName] = useState("");
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -46,8 +50,8 @@ export default function Login() {
 
   const loginUser = async (email) => {
     const payload = {
-      email: "jane.doe@example.com",
-      password: "P@ssw0rd",
+      email: email, //"jane.doe@example.com",
+      password: "123456", ///"P@ssw0rd",
     };
 
     const response = await fetch("https://localhost:7060/api/Auth/login", {
@@ -74,6 +78,19 @@ export default function Login() {
       sameSite: "Strict", // o "Lax" dependiendo del flujo
     });
 
+    // if (jsonResponse.token) {
+    //   const decoded = jwtDecode(jsonResponse.token);
+    //   console.log("Datos del usuario desde el token:", decoded);
+
+    // Cookies.set("authUser", JSON.stringify(decoded), {
+    //   expires: 7, // opcional: duración en días
+    //   secure: true, // solo en HTTPS
+    //   sameSite: "Strict", // o "Lax" dependiendo del flujo
+    // });
+
+    // return decoded;
+    //}
+
     return jsonResponse; // o response.json() si tu backend lo devuelve
     //return await response.text(); // o response.json() si tu backend lo devuelve
   };
@@ -93,7 +110,33 @@ export default function Login() {
       const result = await loginUser(email);
       //const result = await registerUser(email);
       console.log("Registro exitoso:", result);
-      enqueueSnackbar("Registro exitoso" + result.token, {
+
+      const decodedToken = decodeToken(result.token);
+      const tokenExpirado = isExpired(result.token);
+
+      // Mapeo manual de los claims
+      const userId =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+        ];
+      const userName =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+        ];
+      const userEmail =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+        ];
+      const userRole =
+        decodedToken[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ];
+
+      localStorage.setItem("userName", userName);
+      setUserName(userName);
+      setUserRole(userRole);
+
+      enqueueSnackbar("Hola " + userName + "!", {
         variant: "success",
       });
     } catch (err) {
@@ -143,21 +186,21 @@ export default function Login() {
 
         <Box sx={{ display: "flex", gap: 2 }}>
           <Button
+            variant="contained"
+            onClick={() => {
+              enqueueSnackbar("Iniciando sesión...", { variant: "info" });
+              localStorage.setItem("userName", "");
+            }}
+          >
+            Iniciar sesión
+          </Button>
+          <Button
             type="submit"
             variant="outlined"
             disabled={loading}
             startIcon={loading && <CircularProgress size={16} />}
           >
             Registrarme
-          </Button>
-
-          <Button
-            variant="contained"
-            onClick={() =>
-              enqueueSnackbar("Iniciando sesión...", { variant: "info" })
-            }
-          >
-            Iniciar sesión
           </Button>
         </Box>
       </Box>

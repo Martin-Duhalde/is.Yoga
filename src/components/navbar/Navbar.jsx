@@ -1,6 +1,6 @@
 // component/navbar/Navbar.jsx
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -25,6 +25,15 @@ export default function Navbar({
 }) {
   const [open, setOpen] = useState(false);
 
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("userName");
+    if (storedUser) {
+      setUserName(storedUser);
+    }
+  }, []);
+
   return (
     <>
       <AppBar position="static" sx={{ paddingLeft: 1 }}>
@@ -36,17 +45,31 @@ export default function Navbar({
             Yoga con Tere
           </Typography>
           <Box>
-            {navLinks.map((link) => (
+            {navLinks.map(
+              (link) => (
+                //userName == "" &&
+                //link.title !== "Login" && (
+                <Button
+                  component={NavLink}
+                  to={link.title}
+                  key={link.title}
+                  color="inherit"
+                >
+                  {link.title}
+                </Button>
+              )
+              //)
+            )}
+            {userName && (
               <Button
                 component={NavLink}
-                to={link.title}
-                key={link.title}
+                //to={link.title}
+                key={userName}
                 color="inherit"
               >
-                {link.title}
+                {userName ?? "sin usuario"}
               </Button>
-            ))}
-
+            )}
             <IconButton
               color="inherit"
               size="large"
