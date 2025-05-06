@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSnackbar } from "notistack";
+import Cookies from "js-cookie"; // al inicio del archivo
+
 import {
   Box,
   Button,
@@ -18,29 +20,29 @@ export default function Login() {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const registerUser = async (email) => {
-    const payload = {
-      userName: "Jane Doe",
-      email,
-      password: "P@ssw0rd",
-    };
+  // const registerUser = async (email) => {
+  //   const payload = {
+  //     userName: "Jane Doe",
+  //     email,
+  //     password: "P@ssw0rd",
+  //   };
 
-    const response = await fetch("https://localhost:7060/api/Auth/register", {
-      method: "POST",
-      headers: {
-        Accept: "text/plain",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+  //   const response = await fetch("https://localhost:7060/api/Auth/register", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "text/plain",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(payload),
+  //   });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(errorText || `Error ${response.status}`);
-    }
+  //   if (!response.ok) {
+  //     const errorText = await response.text();
+  //     throw new Error(errorText || `Error ${response.status}`);
+  //   }
 
-    return await response.text(); // o response.json() si tu backend lo devuelve
-  };
+  //   return await response.text(); // o response.json() si tu backend lo devuelve
+  // };
 
   const loginUser = async (email) => {
     const payload = {
@@ -62,7 +64,17 @@ export default function Login() {
       throw new Error(errorText || `Error ${response.status}`);
     }
 
-    return await response.json(); // o response.json() si tu backend lo devuelve
+    const jsonResponse = await response.json(); // o response.text() si tu backend lo devuelve
+    console.log("Respuesta del servidor:", jsonResponse); // Verifica la respuesta del servidor
+
+    // 🟢 Guardar token en cookie
+    Cookies.set("authToken", jsonResponse.token, {
+      expires: 7, // opcional: duración en días
+      secure: true, // solo en HTTPS
+      sameSite: "Strict", // o "Lax" dependiendo del flujo
+    });
+
+    return jsonResponse; // o response.json() si tu backend lo devuelve
     //return await response.text(); // o response.json() si tu backend lo devuelve
   };
   const handleSubmit = async (e) => {
