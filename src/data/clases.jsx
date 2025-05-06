@@ -1,3 +1,5 @@
+// data/clases.jsx
+
 const clases = [
   {
     id: 11,

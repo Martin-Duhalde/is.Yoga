@@ -14,6 +14,7 @@ import Login from "./pages/login";
 import Clases from "./pages/clases";
 import Cursos from "./pages/cursos";
 import Seminarios from "./pages/seminarios";
+import NuevaClase from "./pages/nuevaclase";
 
 import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
@@ -40,6 +41,7 @@ const navLinks = [
 const navLinksDrawer = [
   { title: "Inbox", path: "/home", icon: <CrueltyFreeIcon /> },
   { title: "Clases", path: "/clases", icon: <SelfImprovementIcon /> },
+  { title: "Nueva Clase", path: "/nuevaclase", icon: <SelfImprovementIcon /> },
   { title: "Cursos", path: "/cursos", icon: <SchoolIcon /> },
   { title: "Seminarios", path: "/seminarios", icon: <SchoolIcon /> },
   { title: "Alumnos", path: "/alumnos", icon: <PersonIcon /> },
@@ -77,6 +79,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/clases" element={<Clases />} />
+          <Route path="/nuevaclase" element={<NuevaClase />} />
           <Route path="/seminarios" element={<Seminarios />} />
           <Route path="/cursos" element={<Cursos />} />
           <Route path="/posturas" element={<Posturas />} />
