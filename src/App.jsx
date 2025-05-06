@@ -5,11 +5,10 @@ import { useState, useMemo } from "react"; // Importación de React y hooks
 import { Container, CssBaseline, ThemeProvider } from "@mui/material"; // Importación de Material UI y componentes relacionados con la UI
 
 import { themeOptions } from "./ThemeOptions"; /// Importación de las configuraciones de tema
-import Product from "./components/Product";
 import Navbar from "./components/navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 
-import { SnackbarProvider, enqueueSnackbar } from "notistack";
+import { SnackbarProvider } from "notistack";
 
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -18,12 +17,9 @@ import Cursos from "./pages/cursos";
 import Seminarios from "./pages/seminarios";
 import NuevaClase from "./pages/nuevaclase";
 
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SchoolIcon from "@mui/icons-material/School";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
-import BubbleChartIcon from "@mui/icons-material/BubbleChart";
 import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
@@ -65,7 +61,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
+      <SnackbarProvider
+        maxSnack={5}
+        autoHideDuration={3000}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
         <CssBaseline />
 
         <Navbar
