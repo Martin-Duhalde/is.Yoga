@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }) => {
       throw new Error(errorText || `Error ${response.status}`);
     }
 
-    const jsonResponse = await response.json(); // o response.text() si tu backend lo devuelve
-    console.log("Respuesta del servidor:", jsonResponse); // Verifica la respuesta del servidor
+    const loginResponseDto = await response.json(); // o response.text() si tu backend lo devuelve
+    //console.log("Respuesta del servidor 1:", jsonResponse); // Verifica la respuesta del servidor
 
     // 🟢 Guardar token en cookie
     // Cookies.set("authToken", jsonResponse.token, {
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     //   sameSite: "Strict", // o "Lax" dependiendo del flujo
     // });
 
-    return jsonResponse;
+    return loginResponseDto;
   };
 
   const signup = async (email, password) => {
@@ -60,7 +60,9 @@ export const AuthProvider = ({ children }) => {
       const res = await loginUser(email, password);
       setUser(res);
       //setUser(res.data); // Actualiza el estado del usuario con la respuesta del servidor
-      console.log("Respuesta del servidor:", res); // Verifica la respuesta del servidor
+      console.log("Respuesta del servidor 2:", res); // Verifica la respuesta del servidor
+
+      return res;
 
       //     loginUser(email, password).then((response) => {
       //     console.log("Respuesta del servidor:", response); // Verifica la respuesta del servidor

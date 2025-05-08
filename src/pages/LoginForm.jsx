@@ -15,6 +15,7 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: "all",
@@ -26,10 +27,11 @@ export default function LoginForm() {
     setLoading(true);
     console.log("submit");
     console.log(data);
+
     signup(data.email, data.password)
-      .then((res) => {
-        console.log("Respuesta del servidor:", res); // Verifica la respuesta del servidor
-        enqueueSnackbar("Hola " + res /*userName*/ + "!", {
+      .then((loginResponseDto) => {
+        console.log("Respuesta del servidor:", loginResponseDto.userName); // Verifica la respuesta del servidor
+        enqueueSnackbar("¡Hola " + loginResponseDto.userName + "!", {
           variant: "success",
         });
 
@@ -62,7 +64,7 @@ export default function LoginForm() {
             required
           />
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
             <Button
               type="submit"
               variant="contained"

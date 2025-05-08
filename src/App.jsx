@@ -21,9 +21,6 @@ import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import SchoolIcon from "@mui/icons-material/School";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
 import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
-import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
-import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
-import GroupIcon from "@mui/icons-material/Group";
 import PersonIcon from "@mui/icons-material/Person";
 import Posturas from "./pages/posturas";
 import { AuthProvider } from "./context/AuthContext";
@@ -66,7 +63,7 @@ export default function App() {
       <SnackbarProvider
         maxSnack={5}
         autoHideDuration={3000}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
       >
         <AuthProvider>
           <CssBaseline />
