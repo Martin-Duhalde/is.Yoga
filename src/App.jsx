@@ -26,6 +26,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import GroupIcon from "@mui/icons-material/Group";
 import PersonIcon from "@mui/icons-material/Person";
 import Posturas from "./pages/posturas";
+import { AuthProvider } from "./context/AuthContext";
 
 const navLinks = [
   { title: "Home", path: "/home" },
@@ -66,28 +67,29 @@ export default function App() {
         autoHideDuration={3000}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <CssBaseline />
-
-        <Navbar
-          navLinks={navLinks}
-          navLinksDrawer={navLinksDrawer}
-          toggleColorMode={toggleColorMode}
-          mode={mode}
-        />
-        <Container
-          sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/clases" element={<Clases />} />
-            <Route path="/nuevaclase" element={<NuevaClase />} />
-            <Route path="/seminarios" element={<Seminarios />} />
-            <Route path="/cursos" element={<Cursos />} />
-            <Route path="/posturas" element={<Posturas />} />
-          </Routes>
-        </Container>
+        <AuthProvider>
+          <CssBaseline />
+          <Navbar
+            navLinks={navLinks}
+            navLinksDrawer={navLinksDrawer}
+            toggleColorMode={toggleColorMode}
+            mode={mode}
+          />
+          <Container
+            sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/clases" element={<Clases />} />
+              <Route path="/nuevaclase" element={<NuevaClase />} />
+              <Route path="/seminarios" element={<Seminarios />} />
+              <Route path="/cursos" element={<Cursos />} />
+              <Route path="/posturas" element={<Posturas />} />
+            </Routes>
+          </Container>
+        </AuthProvider>
       </SnackbarProvider>
     </ThemeProvider>
   );

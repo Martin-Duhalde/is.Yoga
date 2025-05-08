@@ -1,7 +1,7 @@
-import Cookies from "js-cookie";
 import { useState } from "react";
 import { useSnackbar } from "notistack";
-import { decodeToken, isExpired } from "react-jwt";
+//import { decodeToken, isExpired } from "react-jwt";
+import { useAuth } from "../context/AuthContext";
 
 import {
   Box,
@@ -14,86 +14,14 @@ import {
 import BoxTereCircular from "../components/BoxTereCircular";
 
 export default function Login() {
+  const { signup } = useAuth();
+
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = useState("");
   const [error, setError] = useState({ error: false, message: "" });
   const [loading, setLoading] = useState(false);
-
-  const [userRole, setUserRole] = useState("");
-  const [userName, setUserName] = useState("");
-
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  // const registerUser = async (email) => {
-  //   const payload = {
-  //     userName: "Jane Doe",
-  //     email,
-  //     password: "P@ssw0rd",
-  //   };
-
-  //   const response = await fetch("https://localhost:7060/api/Auth/register", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "text/plain",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(payload),
-  //   });
-
-  //   if (!response.ok) {
-  //     const errorText = await response.text();
-  //     throw new Error(errorText || `Error ${response.status}`);
-  //   }
-
-  //   return await response.text(); // o response.json() si tu backend lo devuelve
-  // };
-
-  const loginUser = async (email) => {
-    const payload = {
-      email: email, //"jane.doe@example.com",
-      password: "123456", ///"P@ssw0rd",
-    };
-
-    const response = await fetch("https://localhost:7060/api/Auth/login", {
-      method: "POST",
-      headers: {
-        Accept: "text/plain",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(errorText || `Error ${response.status}`);
-    }
-
-    const jsonResponse = await response.json(); // o response.text() si tu backend lo devuelve
-    console.log("Respuesta del servidor:", jsonResponse); // Verifica la respuesta del servidor
-
-    // 🟢 Guardar token en cookie
-    Cookies.set("authToken", jsonResponse.token, {
-      expires: 7, // opcional: duración en días
-      secure: true, // solo en HTTPS
-      sameSite: "Strict", // o "Lax" dependiendo del flujo
-    });
-
-    // if (jsonResponse.token) {
-    //   const decoded = jwtDecode(jsonResponse.token);
-    //   console.log("Datos del usuario desde el token:", decoded);
-
-    // Cookies.set("authUser", JSON.stringify(decoded), {
-    //   expires: 7, // opcional: duración en días
-    //   secure: true, // solo en HTTPS
-    //   sameSite: "Strict", // o "Lax" dependiendo del flujo
-    // });
-
-    // return decoded;
-    //}
-
-    return jsonResponse; // o response.json() si tu backend lo devuelve
-    //return await response.text(); // o response.json() si tu backend lo devuelve
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -107,36 +35,9 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const result = await loginUser(email);
-      //const result = await registerUser(email);
-      console.log("Registro exitoso:", result);
+      const res = signup(email, "P@ssw0rd"); // Cambia la contraseña según sea necesario
 
-      const decodedToken = decodeToken(result.token);
-      const tokenExpirado = isExpired(result.token);
-
-      // Mapeo manual de los claims
-      const userId =
-        decodedToken[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-        ];
-      const userName =
-        decodedToken[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-        ];
-      const userEmail =
-        decodedToken[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
-        ];
-      const userRole =
-        decodedToken[
-          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-        ];
-
-      localStorage.setItem("userName", userName);
-      setUserName(userName);
-      setUserRole(userRole);
-
-      enqueueSnackbar("Hola " + userName + "!", {
+      enqueueSnackbar("Hola " + res /*userName*/ + "!", {
         variant: "success",
       });
     } catch (err) {
