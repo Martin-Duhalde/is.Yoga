@@ -31,3 +31,10 @@ npm install notistack
 npm install js-cookie
 
 install react-jwt
+
+npm install react-hook-form
+
+npm install @hookform/resolvers
+
+npm install zod 
+

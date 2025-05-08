@@ -27,6 +27,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import PersonIcon from "@mui/icons-material/Person";
 import Posturas from "./pages/posturas";
 import { AuthProvider } from "./context/AuthContext";
+import LoginPage from "./pages/loginPage";
 
 const navLinks = [
   { title: "Home", path: "/home" },
@@ -87,6 +88,7 @@ export default function App() {
               <Route path="/seminarios" element={<Seminarios />} />
               <Route path="/cursos" element={<Cursos />} />
               <Route path="/posturas" element={<Posturas />} />
+              <Route path="/loginPage" element={<LoginPage />} />
             </Routes>
           </Container>
         </AuthProvider>
