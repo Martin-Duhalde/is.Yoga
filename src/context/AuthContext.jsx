@@ -27,55 +27,59 @@ export const AuthProvider = ({ children }) => {
       email: email, //"jane.doe@example.com",
       password: password, ///"P@ssw0rd",
     };
+    try {
+      const response = await fetch("https://localhost:7060/api/Auth/login", {
+        method: "POST",
+        headers: {
+          Accept: "text/plain",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    const response = await fetch("https://localhost:7060/api/Auth/login", {
-      method: "POST",
-      headers: {
-        Accept: "text/plain",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+      if (!response.ok) {
+        const errorText = await response.text();
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(errorText || `Error ${response.status}`);
+        if (response.status === 401) {
+          console.log("Respuesta del servidor ERROR1: Credenciales inválidas");
+          return { error: "Credenciales inválidas" };
+        } else {
+          console.log("Respuesta del servidor ERROR2:", response);
+        }
+
+        throw new Error(errorText || `Error ${response.status}`);
+      }
+
+      const loginResponseDto = await response.json(); // o response.text() si tu backend lo devuelve
+
+      // 🟢 Guardar token en cookie
+      // Cookies.set("authToken", jsonResponse.token, {
+      //   expires: 7, // opcional: duración en días
+      //   secure: true, // solo en HTTPS
+      //   sameSite: "Strict", // o "Lax" dependiendo del flujo
+      // });
+
+      return loginResponseDto;
+    } catch (errorFetch) {
+      // 🛑 Esto atrapa errores como ERR_CONNECTION_REFUSED
+      console.error(
+        "Error de red o conexión ¿ Está la API levantada ?:",
+        errorFetch.message
+      );
+      throw new Error(
+        "No se pudo conectar con el servidor. Intente más tarde. (Error de red o conexión)"
+      );
     }
-
-    const loginResponseDto = await response.json(); // o response.text() si tu backend lo devuelve
-    //console.log("Respuesta del servidor 1:", jsonResponse); // Verifica la respuesta del servidor
-
-    // 🟢 Guardar token en cookie
-    // Cookies.set("authToken", jsonResponse.token, {
-    //   expires: 7, // opcional: duración en días
-    //   secure: true, // solo en HTTPS
-    //   sameSite: "Strict", // o "Lax" dependiendo del flujo
-    // });
-
-    return loginResponseDto;
   };
 
   const signup = async (email, password) => {
-    try {
-      const res = await loginUser(email, password);
-      setUser(res);
-      //setUser(res.data); // Actualiza el estado del usuario con la respuesta del servidor
-      console.log("Respuesta del servidor 2:", res); // Verifica la respuesta del servidor
-
-      return res;
-
-      //     loginUser(email, password).then((response) => {
-      //     console.log("Respuesta del servidor:", response); // Verifica la respuesta del servidor
-      //   });
-      //   const userCredential = await createUserWithEmailAndPassword(
-      //     auth,
-      //     email,
-      //     password
-      //   );
-      //   setUser(userCredential.user);
-    } catch (error) {
-      console.error("Error signing up:", error);
-    }
+    // try {
+    const res = await loginUser(email, password);
+    setUser(res);
+    return res;
+    // } catch (error) {
+    //   console.error("Error signing up:", error);
+    // }
   };
 
   return (

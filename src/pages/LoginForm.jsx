@@ -15,7 +15,6 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     mode: "all",
@@ -30,16 +29,26 @@ export default function LoginForm() {
 
     signup(data.email, data.password)
       .then((loginResponseDto) => {
-        console.log("Respuesta del servidor:", loginResponseDto.userName); // Verifica la respuesta del servidor
-        enqueueSnackbar("¡Hola " + loginResponseDto.userName + "!", {
-          variant: "success",
-        });
-
+        const userName = loginResponseDto?.userName;
+        const error = loginResponseDto?.error;
+        if (userName) {
+          enqueueSnackbar("¡Hola " + loginResponseDto.userName + "!", {
+            variant: "success",
+          });
+        } else {
+          console.error("Ocurrió un Error loginResponseDto=", loginResponseDto);
+          enqueueSnackbar(
+            "No se pudo iniciar sesión: " + error, // + JSON.stringify(loginResponseDto)
+            {
+              variant: "error",
+            }
+          );
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error:", err.message);
-        enqueueSnackbar("Email inválido", { variant: "error" });
+        console.error("Ocurrió un Error:", err.message);
+        enqueueSnackbar(err.message, { variant: "error" });
         setLoading(false);
       });
   };
