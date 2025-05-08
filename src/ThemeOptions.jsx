@@ -12,5 +12,10 @@ export const themeOptions = (mode) =>
       secondary: {
         main: "#f50057",
       },
+      error: {
+        ///  FD7745 FF7043 FF8A65
+        //main: "#FFA726", // naranja suave (puede usar otro hex si querés)
+        main: "#FF8A65", // naranja suave (puede usar otro hex si querés)
+      },
     },
   });

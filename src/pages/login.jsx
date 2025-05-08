@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useSnackbar } from "notistack";
+//import { useState } from "react";
+//import { useSnackbar } from "notistack";
 //import { decodeToken, isExpired } from "react-jwt";
-import { useAuth } from "../context/AuthContext";
+//import { useAuth } from "../context/AuthContext";
 
 import {
   Box,
@@ -12,41 +12,41 @@ import {
   CircularProgress,
 } from "@mui/material";
 import BoxTereCircular from "../components/BoxTereCircular";
+import LoginForm from "./LoginForm";
 
 export default function Login() {
-  const { signup } = useAuth();
+  //const { signup } = useAuth();
+  //const { enqueueSnackbar } = useSnackbar();
+  // const [email, setEmail] = useState("");
+  // const [error, setError] = useState({ error: false, message: "" });
+  // const [loading, setLoading] = useState(false);
+  // const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const { enqueueSnackbar } = useSnackbar();
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState({ error: false, message: "" });
-  const [loading, setLoading] = useState(false);
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  //   if (!validateEmail(email)) {
+  //     setError({ error: true, message: "Ingrese un email válido" });
+  //     enqueueSnackbar("Email inválido", { variant: "error" });
+  //     return;
+  //   }
 
-    if (!validateEmail(email)) {
-      setError({ error: true, message: "Ingrese un email válido" });
-      enqueueSnackbar("Email inválido", { variant: "error" });
-      return;
-    }
+  //   setError({ error: false, message: "" });
+  //   setLoading(true);
 
-    setError({ error: false, message: "" });
-    setLoading(true);
+  //   try {
+  //     const res = signup(email, "P@ssw0rd"); // Cambia la contraseña según sea necesario
 
-    try {
-      const res = signup(email, "P@ssw0rd"); // Cambia la contraseña según sea necesario
-
-      enqueueSnackbar("Hola " + res /*userName*/ + "!", {
-        variant: "success",
-      });
-    } catch (err) {
-      console.error("Error:", err.message);
-      enqueueSnackbar(err.message, { variant: "error" });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     enqueueSnackbar("Hola " + res /*userName*/ + "!", {
+  //       variant: "success",
+  //     });
+  //   } catch (err) {
+  //     console.error("Error:", err.message);
+  //     enqueueSnackbar(err.message, { variant: "error" });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <Container sx={{ py: 6 }}>
@@ -61,7 +61,7 @@ export default function Login() {
         <BoxTereCircular variacion="gris" />
         <Box>
           <Typography variant="h3" gutterBottom>
-            Login
+            Yogin
           </Typography>
           <Typography variant="body1">
             Ingresa al sistema para tener tus clases favoritas a mano, además de
@@ -70,7 +70,8 @@ export default function Login() {
         </Box>
       </Box>
 
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 6 }}>
+      <LoginForm />
+      {/* <Box component="form" onSubmit={handleSubmit} sx={{ mt: 6 }}>
         <TextField
           id="email"
           label="Email"
@@ -104,7 +105,7 @@ export default function Login() {
             Registrarme
           </Button>
         </Box>
-      </Box>
+      </Box> */}
     </Container>
   );
 }
