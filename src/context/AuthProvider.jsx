@@ -1,31 +1,29 @@
-import { createContext, useContext, useState } from "react";
+// context/AuthProvider.jsx
 
-export const AuthContext = createContext();
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+import { useState } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  //const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  //   useEffect(() => {
-  //     const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //       setUser(user);
-  //       setLoading(false);
-  //     });
+  const login = async (email, password) => {
+    try {
+      const loginResponseDto = await authLogin(email, password);
+      setUser(loginResponseDto);
+      setIsAuthenticated(true);
+      return loginResponseDto;
+    } catch (error) {
+      console.error("Error signing up:", error);
+      setUser(null);
+      setIsAuthenticated(false);
+    }
+  };
 
-  //     return () => unsubscribe();
-  //   }, []);
-  const loginUser = async (email, password) => {
+  const authLogin = async (email, password) => {
     const payload = {
-      email: email, //"jane.doe@example.com",
-      password: password, ///"P@ssw0rd",
+      email: email,
+      password: password,
     };
     try {
       const response = await fetch("https://localhost:7060/api/Auth/login", {
@@ -50,8 +48,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error(errorText || `Error ${response.status}`);
       }
 
-      const loginResponseDto = await response.json(); // o response.text() si tu backend lo devuelve
-
+      const loginResponseDto = await response.json();
       // 🟢 Guardar token en cookie
       // Cookies.set("authToken", jsonResponse.token, {
       //   expires: 7, // opcional: duración en días
@@ -72,18 +69,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = async (email, password) => {
-    // try {
-    const res = await loginUser(email, password);
-    setUser(res);
-    return res;
-    // } catch (error) {
-    //   console.error("Error signing up:", error);
-    // }
-  };
-
   return (
-    <AuthContext.Provider value={{ user, signup }}>
+    <AuthContext.Provider value={{ login, user, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

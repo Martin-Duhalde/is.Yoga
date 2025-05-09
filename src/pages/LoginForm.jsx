@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const { signup } = useAuth();
+  const { login } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +27,7 @@ export default function LoginForm() {
     console.log("submit");
     console.log(data);
 
-    signup(data.email, data.password)
+    login(data.email, data.password)
       .then((loginResponseDto) => {
         const userName = loginResponseDto?.userName;
         const error = loginResponseDto?.error;

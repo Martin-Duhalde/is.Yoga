@@ -23,7 +23,9 @@ import SlideshowIcon from "@mui/icons-material/Slideshow";
 import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
 import PersonIcon from "@mui/icons-material/Person";
 import Posturas from "./pages/posturas";
-import { AuthProvider } from "./context/AuthContext";
+//import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthProvider";
+
 import LoginForm from "./pages/LoginForm";
 
 const navLinks = [
