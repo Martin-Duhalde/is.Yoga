@@ -7,14 +7,22 @@ import { z } from "zod";
 // };
 
 export const loginSchema = z.object({
-  email: z.string().email("Email inválido").nonempty("Email requerido"),
+  email: z
+    .string()
+    .email("Verifica que hayas escrito el email correctamente.")
+    .nonempty("El email es necesario"),
   // .refine(
   //   (text) => {
   //     return patterns.email.test(text);
   //   },
   //   { message: "Email inválido" }
   // )
-  password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+  password: z
+    .string()
+    .min(
+      6,
+      "La contraseña debe tener al menos 6 caracteres. Usa letras, números y algún caracter especial 😎."
+    ),
   // .refine(
   //   (text) => {
   //     return patterns.password.test(text);

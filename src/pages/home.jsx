@@ -40,41 +40,42 @@ export default function Home() {
           y espíritu. <br />
           ¡Sumate a esta experiencia de bienestar!
         </Typography>
+        <Box sx={{ margin: "15%" }}>
+          <Product
+            name="Clase de Yoga "
+            description="Clase para relajar cuerpo y mente."
+            price={19.99}
+            image="/tere-gris-der.png"
+            rotate={false}
+          />
 
-        <Product
-          name="Clase de Yoga "
-          description="Clase para relajar cuerpo y mente."
-          price={19.99}
-          image="/tere-gris-der.png"
-          rotate={false}
-        />
+          <Product
+            name="Clase de Yoga"
+            description="Clase para relajar cuerpo y mente"
+            price={19.99}
+            image="/tere-roja-der.png"
+            rotate={false}
+          />
 
-        <Product
-          name="Clase de Yoga"
-          description="Clase para relajar cuerpo y mente"
-          price={19.99}
-          image="/tere-roja-der.png"
-          rotate={false}
-        />
+          <Product
+            name="Yoga Presencial"
+            description="Martes y Jueves 09:00hs. Reserva tu cupo. Apto principiantes e intermedios."
+            price={19.99}
+            image="/tere-gris-der.png"
+            rotate={false}
+          />
 
-        <Product
-          name="Yoga Presencial"
-          description="Martes y Jueves 09:00hs. Reserva tu cupo. Apto principiantes e intermedios."
-          price={19.99}
-          image="/tere-gris-der.png"
-          rotate={false}
-        />
+          <Product
+            name="Seminario de Caderas"
+            description="Sábado 20 Septiembre 09:00hs. Reserva tu cupo. Apto principiantes e intermedios."
+            price={19.99}
+            image="/tere-celeste-der.png"
+            rotate={false}
+          />
 
-        <Product
-          name="Seminario de Caderas"
-          description="Sábado 20 Septiembre 09:00hs. Reserva tu cupo. Apto principiantes e intermedios."
-          price={19.99}
-          image="/tere-celeste-der.png"
-          rotate={false}
-        />
-
-        <Product />
-        <Product />
+          <Product />
+          <Product />
+        </Box>
       </Paper>
     </Container>
   );
