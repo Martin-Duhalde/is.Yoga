@@ -23,29 +23,33 @@ import SlideshowIcon from "@mui/icons-material/Slideshow";
 import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
 import PersonIcon from "@mui/icons-material/Person";
 import Posturas from "./pages/posturas";
-//import { AuthProvider } from "./context/AuthContext";
-import { AuthProvider } from "./context/AuthProvider";
 
 import LoginForm from "./pages/LoginForm";
 
-const navLinks = [
-  { title: "Home", path: "/home" },
-  { title: "Posturas", path: "/posturas" },
-  { title: "Clases", path: "/clases" },
-  { title: "Cursos", path: "/cursos" },
-  { title: "Seminarios", path: "/seminarios" },
-  { title: "Login", path: "/login" },
-];
+import useNavigationLinks from "./components/navbar/NavigationLinks";
+import Perfil from "./pages/perfil";
 
-const navLinksDrawer = [
-  { title: "Inbox", path: "/home", icon: <CrueltyFreeIcon /> },
-  { title: "Clases", path: "/clases", icon: <SelfImprovementIcon /> },
-  { title: "Nueva Clase", path: "/nuevaclase", icon: <SelfImprovementIcon /> },
-  { title: "Cursos", path: "/cursos", icon: <SchoolIcon /> },
-  { title: "Seminarios", path: "/seminarios", icon: <SchoolIcon /> },
-  { title: "Alumnos", path: "/alumnos", icon: <PersonIcon /> },
-  { title: "Videos", path: "/login", icon: <SlideshowIcon /> },
-];
+// const navLinks = [
+//   { title: "Home", path: "/home" },
+//   { title: "Posturas", path: "/posturas" },
+//   { title: "Clases", path: "/clases" },
+//   { title: "Cursos", path: "/cursos" },
+//   { title: "Seminarios", path: "/seminarios" },
+//   { title: "Login0", path: "/login" },
+//   // user
+//   //   ? { title: user.name || "Usuario", path: "/perfil" }
+//   //   : { title: "Login", path: "/login" },
+// ];
+
+// const navLinksDrawer = [
+//   { title: "Inbox", path: "/home", icon: <CrueltyFreeIcon /> },
+//   { title: "Clases", path: "/clases", icon: <SelfImprovementIcon /> },
+//   { title: "Nueva Clase", path: "/nuevaclase", icon: <SelfImprovementIcon /> },
+//   { title: "Cursos", path: "/cursos", icon: <SchoolIcon /> },
+//   { title: "Seminarios", path: "/seminarios", icon: <SchoolIcon /> },
+//   { title: "Alumnos", path: "/alumnos", icon: <PersonIcon /> },
+//   { title: "Videos", path: "/login", icon: <SlideshowIcon /> },
+// ];
 
 export default function App() {
   const storedMode = localStorage.getItem("colorMode") || "dark";
@@ -60,6 +64,8 @@ export default function App() {
   };
   const theme = useMemo(() => themeOptions(mode), [mode]);
 
+  const { navLinks, navLinksDrawer } = useNavigationLinks(); // ✅ FUNCIONA ahora
+
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider
@@ -67,30 +73,29 @@ export default function App() {
         autoHideDuration={3000}
         anchorOrigin={{ vertical: "top", horizontal: "left" }}
       >
-        <AuthProvider>
-          <CssBaseline />
-          <Navbar
-            navLinks={navLinks}
-            navLinksDrawer={navLinksDrawer}
-            toggleColorMode={toggleColorMode}
-            mode={mode}
-          />
-          <Container
-            sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
-          >
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/clases" element={<Clases />} />
-              <Route path="/nuevaclase" element={<NuevaClase />} />
-              <Route path="/seminarios" element={<Seminarios />} />
-              <Route path="/cursos" element={<Cursos />} />
-              <Route path="/posturas" element={<Posturas />} />
-              <Route path="/loginPage" element={<LoginForm />} />
-            </Routes>
-          </Container>
-        </AuthProvider>
+        <CssBaseline />
+        <Navbar
+          navLinks={navLinks}
+          navLinksDrawer={navLinksDrawer}
+          toggleColorMode={toggleColorMode}
+          mode={mode}
+        />
+        <Container
+          sx={{ border: 0, boxShadow: 0, pb: 2, borderColor: "primary.main" }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/clases" element={<Clases />} />
+            <Route path="/nuevaclase" element={<NuevaClase />} />
+            <Route path="/seminarios" element={<Seminarios />} />
+            <Route path="/cursos" element={<Cursos />} />
+            <Route path="/posturas" element={<Posturas />} />
+            <Route path="/loginPage" element={<LoginForm />} />
+            <Route path="/perfil" element={<Perfil />} />
+          </Routes>
+        </Container>
       </SnackbarProvider>
     </ThemeProvider>
   );

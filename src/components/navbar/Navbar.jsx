@@ -1,6 +1,6 @@
 // component/navbar/Navbar.jsx
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -25,15 +25,6 @@ export default function Navbar({
 }) {
   const [open, setOpen] = useState(false);
 
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("userName");
-    if (storedUser) {
-      setUserName(storedUser);
-    }
-  }, []);
-
   return (
     <>
       <AppBar position="static" sx={{ paddingLeft: 1 }}>
@@ -45,31 +36,16 @@ export default function Navbar({
             Yoga con Tere
           </Typography>
           <Box>
-            {navLinks.map(
-              (link) => (
-                //userName == "" &&
-                //link.title !== "Login" && (
-                <Button
-                  component={NavLink}
-                  to={link.title}
-                  key={link.title}
-                  color="inherit"
-                >
-                  {link.title}
-                </Button>
-              )
-              //)
-            )}
-            {userName && (
+            {navLinks.map((link) => (
               <Button
                 component={NavLink}
-                //to={link.title}
-                key={userName}
+                to={link.path}
+                key={link.title}
                 color="inherit"
               >
-                {userName ?? "sin usuario"}
+                {link.title}
               </Button>
-            )}
+            ))}
             <IconButton
               color="inherit"
               size="large"
@@ -81,11 +57,8 @@ export default function Navbar({
             <IconButton color="inherit" size="large" onClick={toggleColorMode}>
               <IconTema mode={mode} />
             </IconButton>
-
-            {/* <IconTema toggleColorMode={toggleColorMode} mode={mode} /> */}
           </Box>
         </Toolbar>
-        {/* <Button onClick={() => setOpen(true)}>Abrir menú</Button> */}
       </AppBar>
 
       <Drawer open={open} anchor="right" onClose={() => setOpen(false)}>

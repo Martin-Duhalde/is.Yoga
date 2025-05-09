@@ -3,6 +3,15 @@
 import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 
+/// user (Example returns from the API)
+/// {
+///     "Id": 101,
+///     "UserName": "jane_doe",
+///     "Email": "jane.doe@example.com",
+///     "Role": "admin",
+///     "AvatarUrl": "/avatars/101.png"
+/// }
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,6 +58,9 @@ export const AuthProvider = ({ children }) => {
       }
 
       const loginResponseDto = await response.json();
+
+      console.log("Respuesta del servidor: loginResponseDto", loginResponseDto);
+
       // 🟢 Guardar token en cookie
       // Cookies.set("authToken", jsonResponse.token, {
       //   expires: 7, // opcional: duración en días

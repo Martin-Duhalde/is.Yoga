@@ -1,16 +1,17 @@
-// // loginPage.jsx - React Hook Form + Zod
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, defaultValues } from "../validations/loginSchema";
-import { Stack, TextField, Button, CircularProgress } from "@mui/material";
-import { useAuth } from "../context/AuthContext";
-import { useSnackbar } from "notistack";
+/// loginPage.jsx - React Hook Form + Zod + useAuth + loginSchema
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useSnackbar } from "notistack";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Stack, TextField, Button, CircularProgress } from "@mui/material";
+
+import { useAuth } from "../context/AuthContext";
+import { loginSchema, defaultValues } from "../validations/loginSchema";
 
 export default function LoginForm() {
-  const { login } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const {
     register,
