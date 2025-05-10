@@ -17,11 +17,11 @@ import Cursos from "./pages/cursos";
 import Seminarios from "./pages/seminarios";
 import NuevaClase from "./pages/nuevaclase";
 
-import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
-import SchoolIcon from "@mui/icons-material/School";
-import SlideshowIcon from "@mui/icons-material/Slideshow";
-import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
-import PersonIcon from "@mui/icons-material/Person";
+// import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
+// import SchoolIcon from "@mui/icons-material/School";
+// import SlideshowIcon from "@mui/icons-material/Slideshow";
+// import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
+// import PersonIcon from "@mui/icons-material/Person";
 import Posturas from "./pages/posturas";
 
 import LoginForm from "./pages/LoginForm";

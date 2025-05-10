@@ -1,6 +1,6 @@
 // context/AuthProvider.jsx
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 
 /// user (Example returns from the API)
@@ -13,19 +13,59 @@ import { AuthContext } from "./AuthContext";
 /// }
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    () => !!localStorage.getItem("user")
+  );
+  const [loading, setLoading] = useState(true); // para controlar render
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const login = async (email, password) => {
     try {
       const loginResponseDto = await authLogin(email, password);
       setUser(loginResponseDto);
       setIsAuthenticated(true);
+      localStorage.setItem("user", JSON.stringify(loginResponseDto)); // 🟢 persistir
+      console.log(
+        "[AuthProvider] Login OK. ¡Hola " + loginResponseDto.userName + "!"
+      );
       return loginResponseDto;
     } catch (error) {
-      console.error("Error signing up:", error);
+      logout(); // 🧹 limpiar por si acaso
+
+      console.log("[AuthProvider] Login failed!");
+      throw error; // Re-throw the error to be handled by the caller
+    }
+  };
+
+  const logout = async () => {
+    try {
+      const response = await fetch("https://localhost:7060/api/Auth/logout", {
+        method: "POST",
+        credentials: "include", // 👈 Necesario para que la cookie sea enviada
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("[AuthProvider] Error al hacer logout:", errorText);
+        throw new Error(errorText || "Error al cerrar sesión");
+      }
+
+      const result = await response.json();
+      console.log("[AuthProvider] Logout OK:", result.message);
+    } catch (error) {
+      console.warn("[AuthProvider] Error durante logout:", error.message);
+      // 🔒 Aun si hay error, limpiamos por seguridad
+    } finally {
       setUser(null);
       setIsAuthenticated(false);
+      localStorage.removeItem("user");
     }
   };
 
@@ -41,6 +81,7 @@ export const AuthProvider = ({ children }) => {
           Accept: "text/plain",
           "Content-Type": "application/json",
         },
+        credentials: "include", // 👈 Necesario para guardar la cookie devuelta
         body: JSON.stringify(payload),
       });
 
@@ -48,10 +89,12 @@ export const AuthProvider = ({ children }) => {
         const errorText = await response.text();
 
         if (response.status === 401) {
-          console.log("Respuesta del servidor ERROR1: Credenciales inválidas");
+          console.log(
+            "[AuthProvider]  Respuesta del servidor ERROR: Credenciales inválidas"
+          );
           return { error: "Credenciales inválidas" };
         } else {
-          console.log("Respuesta del servidor ERROR2:", response);
+          console.log("[AuthProvider] Respuesta del servidor ERROR:", response);
         }
 
         throw new Error(errorText || `Error ${response.status}`);
@@ -59,7 +102,10 @@ export const AuthProvider = ({ children }) => {
 
       const loginResponseDto = await response.json();
 
-      console.log("Respuesta del servidor: loginResponseDto", loginResponseDto);
+      console.log(
+        "[AuthProvider] Respuesta del servidor: loginResponseDto",
+        loginResponseDto
+      );
 
       // 🟢 Guardar token en cookie
       // Cookies.set("authToken", jsonResponse.token, {
@@ -71,19 +117,19 @@ export const AuthProvider = ({ children }) => {
       return loginResponseDto;
     } catch (errorFetch) {
       // 🛑 Esto atrapa errores como ERR_CONNECTION_REFUSED
-      console.error(
-        "Error de red o conexión ¿ Está la API levantada ?:",
+      console.log(
+        "[AuthProvider] Error de red o conexión ¿ Está la API levantada ?:",
         errorFetch.message
       );
       throw new Error(
-        "No se pudo conectar con el servidor. Intente más tarde. (Error de red o conexión)"
+        "No se pudo conectar con el servidor. Intente más tarde. (Error de red o conexión)."
       );
     }
   };
 
   return (
-    <AuthContext.Provider value={{ login, user, isAuthenticated }}>
-      {children}
+    <AuthContext.Provider value={{ login, logout, user, isAuthenticated }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

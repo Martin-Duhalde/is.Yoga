@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Drawer,
@@ -16,6 +17,7 @@ import { NavLink } from "react-router-dom";
 
 import IconTema from "../IconTema";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar({
   navLinks,
@@ -24,6 +26,7 @@ export default function Navbar({
   mode,
 }) {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <>
@@ -46,6 +49,7 @@ export default function Navbar({
                 {link.title}
               </Button>
             ))}
+
             <IconButton
               color="inherit"
               size="large"
@@ -57,6 +61,21 @@ export default function Navbar({
             <IconButton color="inherit" size="large" onClick={toggleColorMode}>
               <IconTema mode={mode} />
             </IconButton>
+
+            {user && ( // ✅ Mostrar solo si el usuario está autenticado
+              <IconButton
+                color="inherit"
+                size="large"
+                component={NavLink}
+                to="/perfil"
+              >
+                <Avatar
+                  alt="Avatar del usuario"
+                  src={`https://localhost:7060/api/Avatars?${Date.now()}`}
+                  sx={{ width: 36, height: 36 }}
+                />
+              </IconButton>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

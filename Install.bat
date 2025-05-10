@@ -38,3 +38,15 @@ npm install @hookform/resolvers
 
 npm install zod 
 
+rem Como administrador: choco install openssl.light 
+choco install openssl.light 
+rem C:\Program Files\OpenSSL\bin\openssl version
+
+rem en carpeta ssl
+rem D:\is\react\material\ssl> 
+rem .
+rem   "C:\Program Files\OpenSSL\bin\openssl.exe" req -x509 -newkey rsa:2048 -nodes -keyout localhost-key.pem -out localhost-cert.pem -days 365 -config openssl.cnf
+
+
+
+

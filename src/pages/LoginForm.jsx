@@ -1,6 +1,7 @@
 /// loginPage.jsx - React Hook Form + Zod + useAuth + loginSchema
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Stack, TextField, Button, CircularProgress } from "@mui/material";
@@ -12,7 +13,7 @@ export default function LoginForm() {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
-
+  const navigate = useNavigate(); // ⬅️ hook de navegación
   const {
     register,
     handleSubmit,
@@ -36,6 +37,8 @@ export default function LoginForm() {
           enqueueSnackbar("¡Hola " + loginResponseDto.userName + "!", {
             variant: "success",
           });
+
+          navigate("/perfil");
         } else {
           console.error("Ocurrió un Error loginResponseDto=", loginResponseDto);
           enqueueSnackbar(
@@ -49,7 +52,9 @@ export default function LoginForm() {
       })
       .catch((err) => {
         console.error("Ocurrió un Error:", err.message);
-        enqueueSnackbar(err.message, { variant: "error" });
+        enqueueSnackbar(err.message, {
+          variant: "error",
+        });
         setLoading(false);
       });
   };
