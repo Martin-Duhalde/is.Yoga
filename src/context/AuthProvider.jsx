@@ -29,6 +29,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const loginResponseDto = await authLogin(email, password);
+
+      console.log("[AuthProvider] AvatarUrl = " + loginResponseDto.avatarUrl);
       setUser(loginResponseDto);
       setIsAuthenticated(true);
       localStorage.setItem("user", JSON.stringify(loginResponseDto)); // 🟢 persistir

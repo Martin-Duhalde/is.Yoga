@@ -71,6 +71,7 @@ export default function Navbar({
               >
                 <Avatar
                   alt="Avatar del usuario"
+                  // src={user.avatarUrl}
                   src={`https://localhost:7060/api/Avatars?${Date.now()}`}
                   sx={{ width: 36, height: 36 }}
                 />

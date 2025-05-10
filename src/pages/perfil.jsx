@@ -106,11 +106,12 @@ export default function Perfil() {
 
   // Llamamos a fetchAvatar cuando el componente se monta
   useEffect(() => {
-    if (user?.avatarUrl) {
-      setPreview(user.avatarUrl); // Si ya hay un avatar en el usuario, lo ponemos en el estado
-    } else {
-      fetchAvatar(); // Si no, lo obtenemos del servicio
-    }
+    fetchAvatar();
+    // if (user?.avatarUrl) {
+    //   setPreview(user.avatarUrl); // Si ya hay un avatar en el usuario, lo ponemos en el estado
+    // } else {
+    //   fetchAvatar(); // Si no, lo obtenemos del servicio
+    // }
   }, [user]);
 
   // Función para manejar el logout
