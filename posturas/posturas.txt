@@ -1,0 +1,50 @@
+ El volumen de la unidad D no tiene etiqueta.
+ El n£mero de serie del volumen es: B040-8CE4
+
+ Directorio de D:\is\react\material\public\posturas
+
+05/05/2025  16:50    <DIR>          .
+05/05/2025  16:50    <DIR>          ..
+27/11/2024  19:06             6.366 adho-mukha-svanasana 1.jpg
+27/11/2024  19:06             7.332 ardha-chandrasana.jpg
+27/11/2024  19:06             5.416 astavakrasana.jpg
+27/11/2024  19:06             5.875 baddha-konasana.jpg
+27/11/2024  19:06             5.782 bakasana.jpg
+27/11/2024  19:06             4.561 balasana-postura-ni¤o.jpg
+27/11/2024  19:06             5.602 bhujangasana-postura-cobra-yoga.jpg
+27/11/2024  19:06             5.982 bitilasana-postura-vaca.jpg
+27/11/2024  19:06             5.537 chaturanga-dandasana.jpg
+27/11/2024  19:06             5.374 dhanurasana.jpg
+27/11/2024  19:06             6.270 garudasana.jpg
+27/11/2024  19:06             5.334 halasana-1.jpg
+27/11/2024  19:06             5.326 janu-sirsasana.jpg
+27/11/2024  19:06             6.498 koundinyasana.jpg
+27/11/2024  19:06             5.742 malasana.jpg
+27/11/2024  19:06             5.989 marjaryasana-postura-gato.jpg
+27/11/2024  19:06             4.874 matsyasana.jpg
+27/11/2024  19:06             6.517 navasana.jpg
+27/11/2024  19:06             6.136 padmasana.jpg
+27/11/2024  19:06             7.543 parsvakonasana.jpg
+27/11/2024  19:06             7.117 parsvottanasana.jpg
+27/11/2024  19:06             5.328 paschimottanasana.jpg
+27/11/2024  19:06             5.833 pincha-mayurasana.jpg
+05/05/2025  16:50                 0 posturas.txt
+27/11/2024  19:06             7.096 prasarita-padottanasana.jpg
+27/11/2024  19:06             5.744 sarvangasana.jpg
+27/11/2024  19:06             4.575 savasana.jpg
+27/11/2024  19:07             7.866 shanti-virabhadrasana.jpg
+27/11/2024  19:06             5.407 sirsasana.jpg
+27/11/2024  19:06             5.572 sukhasana.jpg
+27/11/2024  19:06             6.251 tadasana.jpg
+27/11/2024  19:06             5.410 tolasana.jpg
+27/11/2024  19:06             6.370 urdhva-dhanurasana.jpg
+27/11/2024  19:06             5.880 urdhva-mukha-svanasana.jpg
+27/11/2024  19:07             6.086 uttanasana.jpg
+27/11/2024  19:07             7.678 utthita-trikonasana-triangulo-yoga.jpg
+27/11/2024  19:07             7.470 vasisthasana.jpg
+27/11/2024  19:07             6.734 virabhadrasana-I-guerrero-1.jpg
+27/11/2024  19:07             7.165 virabhadrasana-II-guerrero-2.jpg
+27/11/2024  19:07             6.153 virabhadrasana-III.jpg
+27/11/2024  19:07             6.594 vrikshasana.jpg
+              41 archivos        244.385 bytes
+               2 dirs  664.707.756.032 bytes libres
